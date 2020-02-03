@@ -30,6 +30,8 @@ namespace Blaze.JS
             JSDoc docFile = new JSDoc();
 
             List<Function> funcList = new List<Function>();
+            List<Property> propList = new List<Property>();
+
             //extract comments from file
             StreamReader reader = new StreamReader(file);
             string text=reader.ReadToEnd();
@@ -42,12 +44,45 @@ namespace Blaze.JS
                 Function func=ParseFunctions(d);
                 if (!string.IsNullOrWhiteSpace(func.FuncName))
                     funcList.Add(func);
+
+                //add prop
+                Property p = ParseProperty(d);
+                if (!string.IsNullOrWhiteSpace(p.Name))
+                    propList.Add(p);
+
             }
 
             docFile.Functions = funcList;
             docFile.FilePath = file;
+            docFile.Properties = propList;
             return docFile;
         }
+        private Property ParseProperty(string func)
+        {
+            Property prop = new Property();
+
+            string[] lines = func.Split("\r\n");
+            foreach (string line in lines)
+            {
+                if (line.IndexOf("@") < 0)
+                {
+                    continue;
+                }
+                else
+                {
+                   
+                    if (line.IndexOf("@property") >= 0)
+                    {
+                        var p =GetParam(line,"@property");
+                        prop.Name = p.Name;
+                        prop.DataTypes = p.ParameterTypes.FirstOrDefault();
+                    }
+                }
+
+            }
+            return prop;
+        }
+
         private Function ParseFunctions(string func)
         {
             Function fun = new Function();
@@ -73,6 +108,10 @@ namespace Blaze.JS
                     {
                         fun.ReturnTypes=GetReturn(line);
                     }
+                    else if (line.IndexOf("@type") >= 0)
+                    {
+                        fun.ReturnTypes = GetReturn(line,"@type");
+                    }
                     else if(line.IndexOf("@private") >= 0)
                     {
                         fun.Private = true;
@@ -82,9 +121,9 @@ namespace Blaze.JS
             }
             return fun;
         }
-        string GetFunctionName(string function)
+        string GetFunctionName(string function,string name="@method")
         {
-            int ind=function.IndexOf("@method") + "@method".Length+1;
+            int ind=function.IndexOf(name) + name.Length+1;
             while (function[ind] == ' ')
                 ind++;
             int last = function.IndexOf(" ", ind+1);
@@ -99,7 +138,10 @@ namespace Blaze.JS
 
             int ind = func.IndexOf(tag) + tag.Length + 1;
             func=func.Substring(ind);
-            string pTypes = func.Split('{','}')[1];
+
+            string pTypes;
+            try { pTypes = func.Split('{', '}')[1]; }
+            catch (Exception) { pTypes = "Any"; }
 
             //get param name
             func = func.Substring(func.IndexOf('}') + 1);
@@ -144,7 +186,6 @@ namespace Blaze.JS
         }
         List<string> GetReturn(string func, string tag = "@return")
         {
-
 
             int ind = func.IndexOf(tag) + tag.Length + 1;
             func = func.Substring(ind);
@@ -192,6 +233,7 @@ namespace Blaze.JS
         {
             public string FilePath { get; set; } = "";
             public List<Function> Functions { get; set; } = new List<Function>();
+            public List<Property> Properties { get; set; }
         }
         public class Function
         {
@@ -208,6 +250,12 @@ namespace Blaze.JS
             public string Name { get; set; } = "";
 
             public List<string> ParameterTypes { get; set; } = new List<string>();
+        
+        }
+        public class Property
+        {
+            public string Name { get; set; } = "";
+            public string DataTypes { get; set; } = "";
         }
 
         public class ResultArgs

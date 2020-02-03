@@ -37,6 +37,7 @@ namespace Blaze.JS
                 tags.Add("@param");
                 tags.Add("@method");
                 tags.Add("@return");
+                tags.Add("@type");
                 return tags;
             }
         }

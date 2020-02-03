@@ -50,13 +50,14 @@ namespace Blaze.JS
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(func.Parameters[i].ParameterTypes[0]);
                             Console.ForegroundColor = ConsoleColor.DarkCyan;
-                            Console.WriteLine(")");
+                            Console.Write(")");
                         }
                     }
                     if(func.Parameters.Count==0)
                     {
-                        Console.WriteLine(");");
+                        Console.Write(")");
                     }
+                    Console.WriteLine(";");
 
                 }
             }
