@@ -116,6 +116,10 @@ namespace Blaze.JS
                     {
                         fun.Private = true;
                     }
+                    else if (line.IndexOf("@async") >= 0)
+                    {
+                        fun.Async = true;
+                    }
                 }
                 
             }
@@ -241,6 +245,7 @@ namespace Blaze.JS
             public List<Parameter> Parameters { get; set; } = new List<Parameter>();
             public List<string> ReturnTypes { get; set; }= new List<string>();
             public bool Private { get; set; } = false;
+            public bool Async { get; set; } = false;
 
 
         }

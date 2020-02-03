@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Blaze.JS
 {
@@ -16,7 +17,11 @@ namespace Blaze.JS
             }
             else
             {
-                docs=analyzer.Analyse(@"C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\");
+                string root=AppDomain.CurrentDomain.BaseDirectory;
+                root=Path.Combine(root, "dir");
+                if(!Directory.Exists(root))
+                    Directory.CreateDirectory("dir");
+                docs=analyzer.Analyse(root);
             }
 
             foreach (var item in docs)
