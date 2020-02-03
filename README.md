@@ -1,3 +1,3 @@
 # Blaze.JS
- JSDoc Parser WIP
- Blazor C# and JS Generator tool wip
+ 1. JSDoc Parser WIP
+ 2. Blazor C# and JS Generator tool yet to be written
