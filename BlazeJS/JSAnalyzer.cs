@@ -77,6 +77,10 @@ namespace Blaze.JS
                         prop.Name = p.Name;
                         prop.DataTypes = p.ParameterTypes.FirstOrDefault();
                     }
+                    else if (line.IndexOf("@example") >= 0)
+                    {
+                        break;
+                    }
                 }
 
             }
@@ -120,6 +124,14 @@ namespace Blaze.JS
                     {
                         fun.Async = true;
                     }
+                    else if (line.IndexOf("@static") >= 0)
+                    {
+                        fun.Static = true;
+                    }
+                    else if (line.IndexOf("@example") >= 0)
+                    {
+                        break;
+                    }
                 }
                 
             }
@@ -132,9 +144,9 @@ namespace Blaze.JS
                 ind++;
             int last = function.IndexOf(" ", ind+1);
             if (last < 0)
-                return function.Substring(ind);
+                return function.Substring(ind).Replace("\n","");
             else
-                return function.Substring(ind, last - ind);
+                return function.Substring(ind, last - ind).Replace("\n","");
         }
         Parameter GetParam(string func,string tag="@param")
         {
@@ -161,7 +173,7 @@ namespace Blaze.JS
                 }
             }
             //handle param types
-            string[] types = pTypes.Split('|');
+            string[] types = pTypes.Split(new char[] { '|' ,' ','\n'});
 
             //check if optional param
             bool optional = false;
@@ -243,9 +255,10 @@ namespace Blaze.JS
         {
             public string FuncName { get; set; } = "";
             public List<Parameter> Parameters { get; set; } = new List<Parameter>();
-            public List<string> ReturnTypes { get; set; }= new List<string>();
+            public List<string> ReturnTypes { get; set; } = new List<string>();
             public bool Private { get; set; } = false;
             public bool Async { get; set; } = false;
+            public bool Static { get; set; } = false;
 
 
         }

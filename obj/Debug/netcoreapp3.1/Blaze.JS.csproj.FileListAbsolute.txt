@@ -1,0 +1,13 @@
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.exe
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.deps.json
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.runtimeconfig.json
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.runtimeconfig.dev.json
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.dll
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.pdb
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.csprojAssemblyReference.cache
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.csproj.CoreCompileInputs.cache
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.AssemblyInfoInputs.cache
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.AssemblyInfo.cs
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.dll
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.pdb
+C:\Users\shive\Desktop\Test\Blaze.JS\Blaze.JS\obj\Debug\netcoreapp3.1\Blaze.JS.genruntimeconfig.cache

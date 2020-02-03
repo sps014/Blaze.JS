@@ -26,6 +26,9 @@ namespace Blaze.JS
 
             foreach (var item in docs)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(item.FilePath);
+
                 foreach(var p in item.Properties)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -33,6 +36,8 @@ namespace Blaze.JS
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("  "+p.Name+";");
                 }
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("func");
                 foreach (var func in item.Functions)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
