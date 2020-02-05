@@ -155,7 +155,9 @@ namespace Blaze.JS
             func=func.Substring(ind);
 
             string pTypes;
-            try { pTypes = func.Split('{', '}')[1]; }
+            try {
+                pTypes = func.Split('{', '}')[1];
+            }
             catch (Exception) { pTypes = "Any"; }
 
             //get param name

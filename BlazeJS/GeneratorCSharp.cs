@@ -18,17 +18,58 @@ namespace Blaze.JS
         }
         private string FileName (string jsName)
         {
-            string root=Path.GetPathRoot(jsName);
+            string root=jsName.Substring(0, jsName.LastIndexOf('.'));
 
-            return root;
+            return root+".gen.cs";
         }
         private void ProcessPage(JSDoc doc)
         {
-            FileName(doc.FilePath);
-            //StreamWriter writer=new StreamWriter()
+            StreamWriter writer = new StreamWriter(FileName(doc.FilePath));
+            writer.WriteLine(Namespace);
+            CreateProperty(doc, writer);
+            writer.Write("\n");
+            CreateFunctions(doc,writer);
+            writer.WriteLine(Closing);
+            writer.Close();
         }
-        private void CreateProperty()
+        private void CreateProperty(JSDoc doc,StreamWriter writer)
         {
+            foreach (var prop in doc.Properties)
+            {
+                writer.WriteLine("\t"+prop.DataTypes.ToLower().PadRight(10) +" "+ prop.Name+";");
+            }
+        }
+        private void CreateFunctions(JSDoc doc, StreamWriter writer)
+        {
+            foreach (var func in doc.Functions)
+            {
+                if (func.ReturnTypes.Count > 0)
+                    writer.Write("\t"+func.ReturnTypes[0] + "  ");
+                else
+                    writer.Write("\tvoid ");
+                writer.Write(func.FuncName);
+                writer.Write('(');
+                for (int i = 0; i < func.Parameters.Count; i++)
+                {
+                    if (i != func.Parameters.Count - 1)
+                    {
+                        writer.Write(func.Parameters[i].ParameterTypes[0].ToLower() + " ");
+                        writer.Write(func.Parameters[i].Name+",");
+
+                    }
+                    else if (i == func.Parameters.Count - 1)
+                    {
+                        writer.Write(func.Parameters[i].ParameterTypes[0].ToLower() + " ");
+                        writer.Write(func.Parameters[i].Name + ")");
+                    }
+                }
+                if (func.Parameters.Count == 0)
+                {
+                    writer.Write(")");
+                }
+                writer.WriteLine(";");
+
+            }
 
         }
     }
