@@ -9,7 +9,7 @@ namespace Blaze.JS
         static void Main(string[] args)
         {
             JSDocAnalyzer analyzer = new JSDocAnalyzer();
-            List<JSDocAnalyzer.JSDoc> docs = new List<JSDocAnalyzer.JSDoc>();
+            List<JSDoc> docs = new List<JSDoc>();
 
             if(args.Length>0)
             {
@@ -23,6 +23,9 @@ namespace Blaze.JS
                     Directory.CreateDirectory("dir");
                 docs=analyzer.Analyse(root);
             }
+
+            GeneratorCSharp gen = new GeneratorCSharp();
+            gen.BuildCSharpPage(docs.ToArray());
 
             foreach (var item in docs)
             {
