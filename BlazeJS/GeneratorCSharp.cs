@@ -42,43 +42,44 @@ namespace Blaze.JS
         }
         private void CreateFunctions(JSDoc doc, StreamWriter writer)
         {
-            foreach (var func in doc.Functions)
+            foreach (var fuzz in doc.Functions)
             {
-                AllPossibleFunction(func);
-
-                if (func.ReturnTypes.Count > 0)
-                    writer.Write("\t"+func.ReturnTypes[0] + "  ");
-                else
-                    writer.Write("\tvoid ");
-                writer.Write(func.FuncName);
-                writer.Write('(');
-                for (int i = 0; i < func.Parameters.Count; i++)
+                foreach (var func in AllPossibleFunction(fuzz))
                 {
-                    if (i != func.Parameters.Count - 1)
-                    {
-                        writer.Write(func.Parameters[i].ParameterTypes[0].ToLower() + " ");
-                        writer.Write(func.Parameters[i].Name+",");
+                    AllPossibleFunction(func);
 
-                    }
-                    else if (i == func.Parameters.Count - 1)
+                    if (func.ReturnTypes.Count > 0)
+                        writer.Write("\t" + func.ReturnTypes[0] + "  ");
+                    else
+                        writer.Write("\tvoid ");
+                    writer.Write(func.FuncName);
+                    writer.Write('(');
+                    for (int i = 0; i < func.Parameters.Count; i++)
                     {
-                        writer.Write(func.Parameters[i].ParameterTypes[0].ToLower() + " ");
-                        writer.Write(func.Parameters[i].Name + ")");
-                    }
-                }
-                if (func.Parameters.Count == 0)
-                {
-                    writer.Write(")");
-                }
-                writer.WriteLine(";");
+                        if (i != func.Parameters.Count - 1)
+                        {
+                            writer.Write(func.Parameters[i].ParameterTypes[0].ToLower() + " ");
+                            writer.Write(func.Parameters[i].Name + ",");
 
+                        }
+                        else if (i == func.Parameters.Count - 1)
+                        {
+                            writer.Write(func.Parameters[i].ParameterTypes[0].ToLower() + " ");
+                            writer.Write(func.Parameters[i].Name + ")");
+                        }
+                    }
+                    if (func.Parameters.Count == 0)
+                    {
+                        writer.Write(")");
+                    }
+                    writer.WriteLine(";");
+                }
             }
 
         }
         private Function[] AllPossibleFunction(Function func)
         {
             List<Function> funcList = new List<Function>();
-            funcList.Add(func);
 
             for (int i = 0; i < func.Parameters.Count; i++)
             {
@@ -98,6 +99,7 @@ namespace Blaze.JS
                 }
             }
 
+            funcList.Add(func);
             return funcList.ToArray();
         }
     }
