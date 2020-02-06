@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Blaze.JS
@@ -43,6 +44,8 @@ namespace Blaze.JS
         {
             foreach (var func in doc.Functions)
             {
+                AllPossibleFunction(func);
+
                 if (func.ReturnTypes.Count > 0)
                     writer.Write("\t"+func.ReturnTypes[0] + "  ");
                 else
@@ -71,6 +74,35 @@ namespace Blaze.JS
 
             }
 
+        }
+        private Function[] AllPossibleFunction(Function func)
+        {
+            List<Function> funcList = new List<Function>();
+            funcList.Add(func);
+
+            for (int i = 0; i < func.Parameters.Count; i++)
+            {
+                Function fi = new Function();
+                fi.Async = func.Async;
+                fi.FuncName = func.FuncName;
+                fi.Static = func.Static;
+                fi.Private = func.Private;
+                fi.ReturnTypes = func.ReturnTypes;
+                
+                Parameter[] buffer = new Parameter[func.Parameters.Count];
+                if(func.Parameters[i].Optional)
+                {
+                    func.Parameters.CopyTo(0, buffer, 0, i);
+                    foreach(var b in buffer)
+                        if(b!=null)
+                            fi.Parameters.Add(b);
+                    
+                    funcList.Add(fi);
+
+                }
+            }
+
+            return funcList.ToArray();
         }
     }
 }

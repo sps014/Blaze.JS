@@ -9,6 +9,7 @@ namespace Blaze.JS
         public string FilePath { get; set; } = "";
         public List<Function> Functions { get; set; } = new List<Function>();
         public List<Property> Properties { get; set; }
+        public string ModuleName { get; set; }
     }
     public class Function
     {

@@ -91,6 +91,7 @@ namespace Blaze.JS
             Function fun = new Function();
 
             string[] lines = func.Split("\r\n");
+
             foreach(string line in lines)
             {
                 if(line.IndexOf("@")<0)
