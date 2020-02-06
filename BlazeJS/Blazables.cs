@@ -11,7 +11,11 @@ namespace Blaze.JS
         public List<Property> Properties { get; set; }
         public string ModuleName { get; set; }
     }
-    public class Function
+    public interface ICloneable<T>
+    {
+        T Clone();
+    }
+    public class Function:ICloneable<Function>
     {
         public string FuncName { get; set; } = "";
         public List<Parameter> Parameters { get; set; } = new List<Parameter>();
@@ -20,6 +24,21 @@ namespace Blaze.JS
         public bool Async { get; set; } = false;
         public bool Static { get; set; } = false;
 
+        public Function Clone()
+        {
+            Parameter[] buffer = Parameters.ToArray();
+            var list = new List<Parameter>();
+            list.AddRange(buffer);
+            return new Function() 
+            {
+            Async = Async,
+            FuncName =FuncName,
+            Static = Static,
+            Private =Private,
+            ReturnTypes =ReturnTypes,
+            Parameters=list
+            };
+        }
 
     }
     public class Parameter

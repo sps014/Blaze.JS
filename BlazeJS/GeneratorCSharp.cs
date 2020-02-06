@@ -83,12 +83,8 @@ namespace Blaze.JS
             for (int i = 0; i < func.Parameters.Count; i++)
             {
                 Function fi = new Function();
-                fi.Async = func.Async;
-                fi.FuncName = func.FuncName;
-                fi.Static = func.Static;
-                fi.Private = func.Private;
-                fi.ReturnTypes = func.ReturnTypes;
-                
+                fi = func.Clone();
+                fi.Parameters.Clear();
                 Parameter[] buffer = new Parameter[func.Parameters.Count];
                 if(func.Parameters[i].Optional)
                 {
