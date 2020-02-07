@@ -95,7 +95,6 @@ namespace Blaze.JS
                             fi.Parameters.Add(b);
                     
                     funcList.Add(fi);
-
                 }
             }
 
