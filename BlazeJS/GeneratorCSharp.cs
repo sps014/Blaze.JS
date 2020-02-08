@@ -85,6 +85,10 @@ namespace Blaze.JS
                     {
                         writer.Write(voidFunction(func,GetModuleName(doc)));
                     }
+                    else
+                    {
+                        writer.Write(nonVoidFunction(func, GetModuleName(doc)));
+                    }
                 }
             }
 
@@ -116,6 +120,34 @@ namespace Blaze.JS
             }"*/
 
                 return builder.ToString();
+        }
+        private string nonVoidFunction(Function func, string modName)
+        {
+            StringBuilder builder = new StringBuilder("");
+            builder.Append(TAB + TAB + "public async Task<"+JSDocHelper.GetCSharpType(func.ReturnTypes[0])+"> " + func.FuncName + "(");
+            string prms = "";
+            for (int i = 0; i < func.Parameters.Count; i++)
+            {
+                builder.Append(JSDocHelper.GetCSharpType(func.Parameters[i].ParameterTypes[0]));
+                builder.Append(" " + func.Parameters[i].Name);
+                prms += func.Parameters[i].Name;
+                if (i != func.Parameters.Count - 1)
+                {
+                    builder.Append(" , ");
+                    prms += ",";
+                }
+            }
+            builder.Append(")" + EOL);
+            builder.Append(TAB + TAB + "{" + EOL);
+            builder.Append(TAB + TAB + TAB + "return await Runtime.InvokeAsync"+"<"+JSDocHelper.GetCSharpType(func.ReturnTypes[0])+">(" + "\"" + modName + "_" + func.FuncName + "\"" + ",");
+            builder.Append(prms + ");" + EOL);
+            builder.Append(TAB + TAB + "}" + EOL);
+            /*"public async void AddData(object xs, object ys)
+            {
+                await Runtime.InvokeVoidAsync("addDataML5", Hash, xs, ys);
+            }"*/
+
+            return builder.ToString();
         }
         private Function[] AllPossibleFunction(Function func)
         {

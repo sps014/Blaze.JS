@@ -50,9 +50,8 @@ namespace Blaze.JS
         {
             StreamWriter writer = new StreamWriter(FileName(doc.FilePath));
             //writer.WriteLine(GenerateStart(doc));
-            CreateProperty(doc, writer);
+            //CreateProperty(doc, writer);
             CreateFunctions(doc, writer);
-            writer.WriteLine(Closing);
             writer.Close();
         }
         private void CreateProperty(JSDoc doc, StreamWriter writer)
@@ -76,14 +75,15 @@ namespace Blaze.JS
         }
         private void CreateFunctions(JSDoc doc, StreamWriter writer)
         {
-            foreach (var fuzz in doc.Functions)
+            foreach (var func in doc.Functions)
             {
-                foreach (var func in AllPossibleFunction(fuzz))
+                if (func.ReturnTypes.Count == 0)
                 {
-                    if (func.ReturnTypes.Count == 0)
-                    {
-                        writer.Write(voidFunction(func, GetModuleName(doc)));
-                    }
+                    writer.Write(voidFunction(func, GetModuleName(doc)));
+                }
+                else
+                {
+                    writer.Write(nonVoidFunction(func, GetModuleName(doc)));
                 }
             }
 
@@ -91,54 +91,51 @@ namespace Blaze.JS
         private string voidFunction(Function func, string modName)
         {
             StringBuilder builder = new StringBuilder("");
-            builder.Append(TAB + TAB + "public async void " + func.FuncName + "(");
+            builder.Append("function " + modName+ '_'+func.FuncName + "(");
             string prms = "";
             for (int i = 0; i < func.Parameters.Count; i++)
             {
-                builder.Append(JSDocHelper.GetCSharpType(func.Parameters[i].ParameterTypes[0]));
                 builder.Append(" " + func.Parameters[i].Name);
                 prms += func.Parameters[i].Name;
                 if (i != func.Parameters.Count - 1)
                 {
-                    builder.Append(" , ");
+                    builder.Append(",");
                     prms += ",";
                 }
             }
             builder.Append(")" + EOL);
-            builder.Append(TAB + TAB + "{" + EOL);
-            builder.Append(TAB + TAB + TAB + "await Runtime.InvokeVoidAsync(" + "\"" + modName + "_" + func.FuncName + "\"" + ",");
+            builder.Append("{" + EOL);
+            builder.Append(TAB + func.FuncName+"(");
             builder.Append(prms + ");" + EOL);
-            builder.Append(TAB + TAB + "}" + EOL);
-            /*"public async void AddData(object xs, object ys)
-            {
-                await Runtime.InvokeVoidAsync("addDataML5", Hash, xs, ys);
-            }"*/
+            builder.Append("}" + EOL);
+ 
 
             return builder.ToString();
         }
-        private Function[] AllPossibleFunction(Function func)
+        private string nonVoidFunction(Function func, string modName)
         {
-            List<Function> funcList = new List<Function>();
-
+            StringBuilder builder = new StringBuilder("");
+            builder.Append("function " + modName + '_' + func.FuncName + "(");
+            string prms = "";
             for (int i = 0; i < func.Parameters.Count; i++)
             {
-                Function fi = new Function();
-                fi = func.Clone();
-                fi.Parameters.Clear();
-                Parameter[] buffer = new Parameter[func.Parameters.Count];
-                if (func.Parameters[i].Optional)
+                builder.Append(" " + func.Parameters[i].Name);
+                prms += func.Parameters[i].Name;
+                if (i != func.Parameters.Count - 1)
                 {
-                    func.Parameters.CopyTo(0, buffer, 0, i);
-                    foreach (var b in buffer)
-                        if (b != null)
-                            fi.Parameters.Add(b);
-
-                    funcList.Add(fi);
+                    builder.Append(",");
+                    prms += ",";
                 }
             }
+            builder.Append(")" + EOL);
+            builder.Append("{" + EOL);
+            builder.Append(TAB + "return "+func.FuncName + "(");
+            builder.Append(prms + ");" + EOL);
+            builder.Append("}" + EOL);
 
-            funcList.Add(func);
-            return funcList.ToArray();
+
+            return builder.ToString();
         }
+
     }
 }
