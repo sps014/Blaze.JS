@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>JSDocAnalyzer</AssemblyName>
-    <RootNamespace>JSDocAnalyzer</RootNamespace>
+    <AssemblyName>Blaze.JS</AssemblyName>
+    <RootNamespace>Blaze.JS</RootNamespace>
   </PropertyGroup>
 
 </Project>

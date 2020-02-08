@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "JSDocAnalyzer/1.0.0": {
+      "Blaze.JS/1.0.0": {
         "runtime": {
-          "JSDocAnalyzer.dll": {}
+          "Blaze.JS.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "JSDocAnalyzer/1.0.0": {
+    "Blaze.JS/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
