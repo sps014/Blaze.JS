@@ -51,7 +51,7 @@ namespace Blaze.JS
         {
             StreamWriter writer = new StreamWriter(FileName(doc.FilePath));
             writer.WriteLine(GenerateStart(doc));
-            CreateProperty(doc, writer);
+            //CreateProperty(doc, writer);
             CreateFunctions(doc,writer);
             writer.WriteLine(Closing);
             writer.Close();
@@ -79,7 +79,7 @@ namespace Blaze.JS
         {
             foreach (var fuzz in doc.Functions)
             {
-                foreach (var func in AllPossibleFunction(fuzz))
+                foreach (var func in AllPossibleFunction(fuzz).Distinct().ToList())
                 {
                     if(func.ReturnTypes.Count==0)
                     {
@@ -111,7 +111,10 @@ namespace Blaze.JS
             }
             builder.Append(")" + EOL);
             builder.Append(TAB + TAB + "{"+EOL);
-            builder.Append(TAB + TAB + TAB + "await Runtime.InvokeVoidAsync("+"\""+modName+"_"+func.FuncName+"\""+",");
+            if(func.Parameters.Count!=0)
+                builder.Append(TAB + TAB + TAB + "await Runtime.InvokeVoidAsync("+"\""+modName+"_"+func.FuncName+"\""+",");
+            else
+                builder.Append(TAB + TAB + TAB + "await Runtime.InvokeVoidAsync(" + "\"" + modName + "_" + func.FuncName + "\"");
             builder.Append(prms+");"+EOL);
             builder.Append(TAB + TAB + "}"+EOL);
             /*"public async void AddData(object xs, object ys)

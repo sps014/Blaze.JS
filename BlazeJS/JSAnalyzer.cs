@@ -149,31 +149,31 @@ namespace Blaze.JS
                     {
                         fun.FuncName=GetFunctionName(line);
                     }
-                    else if(line.IndexOf("@param")>=0)
+                    if(line.IndexOf("@param")>=0)
                     {
                         fun.Parameters.Add(GetParam(line));
                     }
-                    else if (line.IndexOf("@return") >= 0)
+                    if (line.IndexOf("@return") >= 0)
                     {
                         fun.ReturnTypes=GetReturn(line);
                     }
-                    else if (line.IndexOf("@type") >= 0)
+                    if (line.IndexOf("@type") >= 0)
                     {
                         fun.ReturnTypes = GetReturn(line,"@type");
                     }
-                    else if(line.IndexOf("@private") >= 0)
+                    if(line.IndexOf("@private") >= 0)
                     {
                         fun.Private = true;
                     }
-                    else if (line.IndexOf("@async") >= 0)
+                    if (line.IndexOf("@async") >= 0)
                     {
                         fun.Async = true;
                     }
-                    else if (line.IndexOf("@static") >= 0)
+                    if (line.IndexOf("@static") >= 0)
                     {
                         fun.Static = true;
                     }
-                    else if (line.IndexOf("@example") >= 0)
+                    if (line.IndexOf("@example") >= 0)
                     {
                         break;
                     }
