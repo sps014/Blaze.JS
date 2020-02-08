@@ -10,5 +10,5 @@
  3. example:run ``` path/to/JSanalyzer.exe path/to/folder/with/jsfiles ``` in terminal
  
  ### For mac,linux
- compile dotnet core project yourself with ```dotnet build```
+ please compile dotnet core project yourself with ```dotnet build``` command 
  
