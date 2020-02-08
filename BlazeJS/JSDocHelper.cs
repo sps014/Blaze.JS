@@ -20,14 +20,22 @@ namespace Blaze.JS
                  or []
                  Object or {}
                  */
-                map.Add("null", "null");
+                //map.Add("null", "null");
                 map.Add("undefined", "null");
                 map.Add("boolean", "bool");
                 map.Add("number", "double");
-                map.Add("string", "string");
+                map.Add("any", "object");
+                ///map.Add("string", "string");
 
                 return map;
             }
+        }
+        public static string GetCSharpType(string type)
+        {
+            if (CSharpMap.ContainsKey(type))
+                return CSharpMap[type];
+            else
+                return type;
         }
         public static List<string> JSDocTags
         {

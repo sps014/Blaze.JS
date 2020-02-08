@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\Blaze.JS.csproj": {}
+    "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\BlazeJS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\Blaze.JS.csproj": {
+    "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\BlazeJS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\Blaze.JS.csproj",
+        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\BlazeJS.csproj",
         "projectName": "JSDocAnalyzer",
-        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\Blaze.JS.csproj",
+        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\BlazeJS.csproj",
         "packagesPath": "C:\\Users\\shive\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\shive\\Desktop\\Test\\Blaze.JS\\Blaze.JS\\obj\\",
         "projectStyle": "PackageReference",
