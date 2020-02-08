@@ -2,7 +2,6 @@
 Main Aim is to auto generate most of the C# and JS Code for Blazor interop.
  1. Blazor C# and JS interops Generator tool [Basic]
  2. JSDoc Parser ...
- 3. JSDoc Analyzer...
  
  ## Tool Usage
  1. navigate to ``` Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\JSDocAnalyzer.exe```
