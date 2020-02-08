@@ -4,10 +4,10 @@ Main Aim is to auto generate most of the C# and JS Code for Blazor interop.
  2. JSDoc Parser ...
  
  ## Tool Usage
- 1. navigate to ``` Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\JSDocAnalyzer.exe```
+ 1. navigate to ``` Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\Blaze.JS.exe```
  2. pass target directory of js file with jsDoc styled as argument.
  alternatively you can place js doc file content in ```Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\dir``` folder
- 3. example:run ``` path/to/JSanalyzer.exe path/to/folder/with/jsfiles ``` in terminal
+ 3. example:run ``` path/to/\Blaze.JS.exe path/to/folder/with/jsfiles ``` in terminal
  
  #### Advanced user
  
