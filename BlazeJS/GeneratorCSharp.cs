@@ -8,8 +8,8 @@ namespace Blaze.JS
 {
     public class GeneratorCSharp
     {
-        public const string Namespace= "using System;\nusing System.Collections.Generic;\n\nnamespace Blaze.Gen\n{";
-        public const string Closing = "}";
+        public const string Namespace= "using System;\nusing System.Collections.Generic;\n\nnamespace Blaze.Gen\n{\n\tpublic class Semi\n\t{";
+        public const string Closing = "\t}\n}";
         public void BuildCSharpPage(JSDoc[] docs)
         {
             foreach(JSDoc doc in docs)
@@ -37,7 +37,7 @@ namespace Blaze.JS
         {
             foreach (var prop in doc.Properties)
             {
-                writer.WriteLine("\t"+prop.DataTypes.ToLower().PadRight(10) +" "+ prop.Name+";");
+                writer.WriteLine("\t\t"+prop.DataTypes.ToLower().PadRight(10) +" "+ prop.Name+";");
             }
         }
         private void CreateFunctions(JSDoc doc, StreamWriter writer)
@@ -49,9 +49,9 @@ namespace Blaze.JS
                     AllPossibleFunction(func);
 
                     if (func.ReturnTypes.Count > 0)
-                        writer.Write("\t" + func.ReturnTypes[0] + "  ");
+                        writer.Write("\t\t" + func.ReturnTypes[0] + "  ");
                     else
-                        writer.Write("\tvoid ");
+                        writer.Write("\t\tvoid ");
                     writer.Write(func.FuncName);
                     writer.Write('(');
                     for (int i = 0; i < func.Parameters.Count; i++)

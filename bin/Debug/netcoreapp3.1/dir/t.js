@@ -1,5 +1,6 @@
 /**
  @method applyMatrix
+ * @module P6454 
  * @param  {Number} a numbers which define the 2x3 matrix to be multiplied
  * @param  {Number} b numbers which define the 2x3 matrix to be multiplied
  * @param  {Number} [c] numbers which define the 2x3 matrix to be multiplied

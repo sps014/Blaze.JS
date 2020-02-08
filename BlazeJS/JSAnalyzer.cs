@@ -49,12 +49,57 @@ namespace Blaze.JS
                 if (!string.IsNullOrWhiteSpace(p.Name))
                     propList.Add(p);
 
+                ///one file should only one moudule
+                docFile.ModuleName = GetMoudule(d);
+
+
             }
 
             docFile.Functions = funcList;
             docFile.FilePath = file;
             docFile.Properties = propList;
             return docFile;
+        }
+        private string GetMoudule(string func)
+        {
+
+            string[] lines = func.Split("\r\n");
+            string module = null;
+            foreach (string line in lines)
+            {
+                if (line.IndexOf("@") < 0)
+                {
+                    continue;
+                }
+                else
+                {
+
+                    if (line.IndexOf("@module") >= 0)
+                    {
+                        var p = ExtractModule(line, "@module");
+                    }
+                    else if (line.IndexOf("@example") >= 0)
+                    {
+                        break;
+                    }
+                }
+
+            }
+            return module;
+        }
+        private string ExtractModule(string modLine,string type="@module")
+        {
+            int i = modLine.IndexOf(type) + type.Length;
+            while (modLine[i] == ' ')
+                i++;
+            string res = null;
+            int l = modLine.IndexOf(' ', i);
+            if(l>0)
+                res = modLine.Substring(i,l-i);
+            else
+                res = modLine.Substring(i);
+
+            return res;
         }
         private Property ParseProperty(string func)
         {
