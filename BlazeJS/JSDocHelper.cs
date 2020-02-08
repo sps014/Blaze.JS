@@ -11,25 +11,15 @@ namespace Blaze.JS
             get
             {
                 Dictionary<string, string> map = new Dictionary<string, string>();
-                 /*
-                 null
-                 undefined
-                 boolean
-                 number
-                 string
-                 or []
-                 Object or {}
-                 */
-                //map.Add("null", "null");
+
                 map.Add("undefined", "null");
                 map.Add("boolean", "bool");
                 map.Add("Boolean", "bool");
                 map.Add("Number", "double");
                 map.Add("number", "double");
                 map.Add("any", "object");
+                map.Add("String", "string");
                 map.Add("Any", "object");
-
-                ///map.Add("string", "string");
 
                 return map;
             }

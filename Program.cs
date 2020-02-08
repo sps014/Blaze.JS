@@ -21,7 +21,7 @@ namespace Blaze.JS
                 root=Path.Combine(root, "dir");
                 if(!Directory.Exists(root))
                     Directory.CreateDirectory("dir");
-                docs=analyzer.Analyse(root);
+                docs=analyzer.Analyse(root,true);
             }
 
             GeneratorCSharp gen = new GeneratorCSharp();

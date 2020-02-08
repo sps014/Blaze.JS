@@ -11,7 +11,7 @@ namespace Blaze.JS
     {
         private const string OpeningTag = "/**";
         private const string ClosingTag = "*/";
-        public List<JSDoc> Analyse(string dir)
+        public List<JSDoc> Analyse(string dir,bool ignoreGenFiles=false)
         {
             List<JSDoc> docs = new List<JSDoc>();
             string[] files=Directory.GetFiles(dir);
@@ -19,6 +19,11 @@ namespace Blaze.JS
             {
                 if(new FileInfo(file).Extension.ToLower()==".js")
                 {
+                    if(ignoreGenFiles)
+                    {
+                        if (new FileInfo(file).FullName.IndexOf(".gen.") >= 0)
+                            continue; 
+                    }
                     docs.Add(ReadFile(file));
                 }
             }
