@@ -37,7 +37,7 @@ namespace Blaze.JS
         {
             foreach (var prop in doc.Properties)
             {
-                writer.WriteLine("\t\t"+prop.DataTypes.ToLower().PadRight(10) +" "+ prop.Name+";");
+                writer.WriteLine("\t\t"+JSDocHelper.GetCSharpType(prop.DataTypes.ToLower()).PadRight(10) +" "+ prop.Name+";");
             }
         }
         private void CreateFunctions(JSDoc doc, StreamWriter writer)

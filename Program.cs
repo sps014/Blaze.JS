@@ -45,7 +45,7 @@ namespace Blaze.JS
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     if (func.ReturnTypes.Count > 0)
-                        Console.Write(func.ReturnTypes[0] + "  ");
+                        Console.Write(JSDocHelper.GetCSharpType(func.ReturnTypes[0].ToLower()) + "  ");
                     else
                         Console.Write("void  ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -60,7 +60,7 @@ namespace Blaze.JS
                             Console.Write(func.Parameters[i].Name);
                             Console.Write(":");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(func.Parameters[i].ParameterTypes[0] + ",");
+                            Console.Write(JSDocHelper.GetCSharpType(func.Parameters[i].ParameterTypes[0].ToLower()) + ",");
                         }
                         else if (i == func.Parameters.Count - 1)
                         {
@@ -68,7 +68,7 @@ namespace Blaze.JS
                             Console.Write(func.Parameters[i].Name);
                             Console.Write(":");
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.Write(func.Parameters[i].ParameterTypes[0]);
+                            Console.Write(JSDocHelper.GetCSharpType(func.Parameters[i].ParameterTypes[0].ToLower()));
                             Console.ForegroundColor = ConsoleColor.DarkCyan;
                             Console.Write(")");
                         }
