@@ -26,6 +26,8 @@ namespace Blaze.JS
 
             GeneratorCSharp gen = new GeneratorCSharp();
             gen.BuildCSharpPage(docs.ToArray());
+            GenerateJS genJs = new GenerateJS();
+            genJs.BuildJS(docs.ToArray());
 
             foreach (var item in docs)
             {

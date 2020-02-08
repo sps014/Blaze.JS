@@ -23,8 +23,12 @@ namespace Blaze.JS
                 //map.Add("null", "null");
                 map.Add("undefined", "null");
                 map.Add("boolean", "bool");
+                map.Add("Boolean", "bool");
+                map.Add("Number", "double");
                 map.Add("number", "double");
                 map.Add("any", "object");
+                map.Add("Any", "object");
+
                 ///map.Add("string", "string");
 
                 return map;
@@ -32,6 +36,9 @@ namespace Blaze.JS
         }
         public static string GetCSharpType(string type)
         {
+            if (type == null)
+                return "object";
+
             if (CSharpMap.ContainsKey(type))
                 return CSharpMap[type];
             else

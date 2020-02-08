@@ -76,7 +76,7 @@ namespace Blaze.JS
 
                     if (line.IndexOf("@module") >= 0)
                     {
-                        var p = ExtractModule(line, "@module");
+                        module = ExtractModule(line, "@module");
                     }
                     else if (line.IndexOf("@example") >= 0)
                     {
