@@ -9,6 +9,14 @@
  alternatively you can place js doc file content in ```Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\dir``` folder
  3. example:run ``` path/to/JSanalyzer.exe path/to/folder/with/jsfiles ``` in terminal
  
+ #### Advanced user
+ 
+ you can modify ```JSDocHelper.cs``` to support more data type mapping.
+ eg. ``` Boolean``` in jsdoc->``` bool``` in C# is added with simple Dictionary 
+ ```c# 
+ map.Add("Boolean", "bool");
+```
+ 
  ### For mac,linux
  please compile dotnet core project yourself with ```dotnet build``` command 
  
