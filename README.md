@@ -8,3 +8,6 @@
  2. pass target directory of js file with jsDoc styled as argument.
  alternatively you can place js doc file content in ```Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\dir``` folder
  
+ ### For mac,linux
+ compile dotnet core project yourself with ```dotnet build```
+ 
