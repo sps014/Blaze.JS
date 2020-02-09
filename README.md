@@ -1,6 +1,6 @@
 # Blaze.JS
 Main Aim is to auto generate most of the C# and JS Code for Blazor interop.
- 1. Blazor C# and JS interops Generator tool [Basic]
+ 1. Blazor C# and JS interops Generator tool (Basic Data types)
  2. JSDoc Parser ...
  
  ## Tool Usage
