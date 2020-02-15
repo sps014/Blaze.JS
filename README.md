@@ -8,7 +8,7 @@ Main Aim is to auto generate most of the C# and JS Code for Blazor interop.
  #### Input JSDoc
  ![input](https://user-images.githubusercontent.com/45932883/74593028-48a99a80-504d-11ea-93e5-d8ae7751077b.PNG)
 
- #### Output C# and JS Wrapper
+ #### Output Generated C# and JS Wrapper
  ![output_cs](https://user-images.githubusercontent.com/45932883/74593040-7d1d5680-504d-11ea-9b53-f17fc93c7d65.PNG)
  ![output_js](https://user-images.githubusercontent.com/45932883/74593077-bc4ba780-504d-11ea-9a20-934368559655.PNG)
 
