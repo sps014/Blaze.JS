@@ -20,7 +20,7 @@ Main Aim is to auto generate most of the C# and JS Code for Blazor interop.
  alternatively you can place js doc file content in ```Blaze.JS\Blaze.JS\bin\Debug\netcoreapp3.1\dir``` folder
  3. example:run ``` path/to/\Blaze.JS.exe path/to/folder/with/jsfiles ``` in terminal
  
- #### Advanced user
+ #### Advanced usecases
  
  you can modify ```JSDocHelper.cs``` to support more data type mapping.
  eg. ``` Boolean``` in jsdoc->``` bool``` in C# is added with simple Dictionary 
